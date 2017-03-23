@@ -8,7 +8,7 @@ This is a plugin for Wechat of work which is the biggest IM in China. Wechat of 
 
 ### 企业微信消息插件安装指南 ###
 
-1、下载源码压缩包，展开到redmine的plugins目录下，保证有redmine_work_wechat。
+1、下载源码压缩包，展开到redmine的plugins目录下，保证有redmine_work_wechat目录。
 
 2、安装必要的gem类库，如果是生产环境，则建议带-without参数：
 
