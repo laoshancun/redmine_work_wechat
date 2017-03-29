@@ -1,0 +1,39 @@
+# English strings go here for Rails i18n
+en:
+  # my_label: "My label"
+  menu_qy_wechats: work wechat
+  label_send_message: send message
+  label_match_user: match user
+  label_edit_match_user: edit match user
+  label_configure_qy_wechat: configure work wechat
+  label_qy_wechat_remark: app remark
+  label_qy_wechat_account_number: work wechat account
+  label_corpid: corp ID
+  label_corp_name: corp name
+  label_application_secret: app Secret
+  label_app_name: app name
+  label_application_agentid: app ID
+  label_qy_wechat_back: back work wechat
+  label_qy_wechat_application_back: back app
+  label_qy_wecaht: work wechat app
+  label_new_qy_wecaht: new wechat app
+  label_edit_qy_wechat: edit wechat app
+  label_head_portrait: head portrait
+  label_qy_wechat_party: work wechat party
+  
+  project_module_qy_wechat_users: work wechat users
+  permission_qy_wechat_users: configure work wechat
+  permission_show_qy_wechat_users: show match users
+  permission_new_qy_wechat_users: match users
+  permission_edit_qy_wechat_users: edit work wechat users
+  permission_destroy_qy_wechat_users: delete work wechat user
+  
+  permission_qy_wechat: app configure
+  permission_show_qy_wechat: show work wechat app
+  permission_new_qy_wechat: new work wechat app
+  permission_edit_qy_wechat: edit work wechat app
+  permission_destroy_qy_wechat: delete work wechat app
+  
+  user_qy_wechat_account_number: work wechat account
+  
+  field_operation: operation

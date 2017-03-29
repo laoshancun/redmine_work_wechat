@@ -1,0 +1,21 @@
+Redmine::Plugin.register :redmine_work_wechat do
+  name 'Redmine Work Wechat plugin'
+  author 'tecsoon team'
+  description 'This is a plugin of Work Wechat for Redmine'
+  version '0.0.1'
+  url 'https://bitbucket.org/39648421/redmine_work_wechat'
+  author_url 'https://bitbucket.org/39648421'
+  
+  permission :corp_wechats, { :corp_wechats => [:new] }, :public => true
+  menu :admin_menu, :corp_wechats, {:controller => 'settings', :action => 'plugin', :id => "redmine_work_wechat"},:caption => :menu_qy_wechats
+                      
+  settings :default => {
+  }, :partial => 'settings/corp_wechat'
+                      
+  Redmine::Search.map do |search|
+    search.register :corp_wechats
+  end
+end
+ActionDispatch::Callbacks.to_prepare do
+  require 'redmine_qy_wechat'
+end

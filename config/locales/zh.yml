@@ -1,0 +1,39 @@
+# English strings go here for Rails i18n
+zh:
+  # my_label: "My label"
+  menu_qy_wechats: 企业微信
+  label_send_message: 发送消息
+  label_match_user: 匹配用户
+  label_edit_match_user: 编辑匹配用户
+  label_configure_qy_wechat: 配置企业微信
+  label_qy_wechat_remark: 企业微信应用备注 
+  label_qy_wechat_account_number: 企业微信账号
+  label_corpid: 企业ID
+  label_corp_name: 企业名称
+  label_application_secret: 应用Secret
+  label_app_name: 应用名称
+  label_application_agentid: 应用ID
+  label_qy_wechat_back: 返回企业微信
+  label_qy_wechat_application_back: 返回企业微信应用
+  label_qy_wecaht: 企业微信应用
+  label_new_qy_wecaht: 新建企业微信应用
+  label_edit_qy_wechat: 编辑企业微信引用
+  label_head_portrait: 头像
+  label_qy_wechat_party: 企业微信用户
+  
+  project_module_qy_wechat_users: 企业微信
+  permission_qy_wechat_users: 企业微信配置
+  permission_show_qy_wechat_users: 显示匹配用户
+  permission_new_qy_wechat_users: 匹配用户
+  permission_edit_qy_wechat_users: 编辑企业微信用户
+  permission_destroy_qy_wechat_users: 删除企业微信用户
+  
+  permission_qy_wechat: 企业微信应用配置
+  permission_show_qy_wechat: 显示企业微信应用
+  permission_new_qy_wechat: 新建企业微信应用
+  permission_edit_qy_wechat: 编辑企业微信应用
+  permission_destroy_qy_wechat: 删除企业微信应用
+  
+  user_qy_wechat_account_number: 企业微信账号
+  
+  field_operation: 操作

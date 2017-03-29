@@ -1,0 +1,34 @@
+<% if CorpWechat.all.empty? %>
+<div class="contextual">
+    <%= link_to l(:label_new_qy_wecaht), {:controller => "corp_wechats", :action => "new"}, :class => 'icon icon-add' %>
+</div>
+<% end %>
+<h2><%= l(:label_qy_wecaht) %></h2>
+ 
+<table class="table table-striped table-bordered table-hover">
+    <thead class="bg-gray-lighter">
+        <tr>
+            <th class="text-center"><%= l(:label_corp_name) %></th>
+            <th class="text-center"><%= l(:label_app_name) %></th>
+            <th class="text-center"><%= l(:label_corpid) %></th>
+            <th class="text-center"><%= l(:label_application_secret)%></th>
+            <th class="text-center"><%= l(:label_application_agentid)%></th>
+            <th class="text-center"><%= l(:field_operation)%></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% CorpWechat.all.each do |corp_wechat| %>
+            <tr>
+                <td class="text-center"><%= corp_wechat.corp_name %></td>
+                <td class="text-center"><%= corp_wechat.app_name %></td>
+                <td class="text-center"><%= corp_wechat.corp_id %></td>
+                <td class="text-center"><%= corp_wechat.corp_secret %></td>
+                <td class="text-center"><%= corp_wechat.app_id %></td> 
+                <td class="buttons">
+                  <%= link_to image_tag('edit.png'), edit_corp_wechat_path(corp_wechat) %>
+                  <%= link_to image_tag('delete.png'), corp_wechat_path(corp_wechat), method: :delete, data: { confirm: 'Are you sure?' }%>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
