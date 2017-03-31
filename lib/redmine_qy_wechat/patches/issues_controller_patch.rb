@@ -47,20 +47,31 @@ module RedmineQyWechat
             end
 
             @corp_wechat = CorpWechat.first
+            
+            if @corp_wechat.blank?
+              return
+            end
+            
             #填写确认并应用的企业ID
             corpid = @corp_wechat.corp_id
             #填写确认并应用的应用Secret
             corpsecret = @corp_wechat.corp_secret
             @group_client = QyWechatApi::Client.new(corpid, corpsecret)
             # 为了确保用户输入的corpid, corpsecret是准确的，请务必执行：
-            @group_client.is_valid?
             
-            #options = {access_token: "access_token"}
-            # redis_key 也可定制
-            #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
-            #issue
-            #填写确认并应用的应用AgentId
-            @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,"您关注的任务 <a href=\'http://proj.tecsoon.cn/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.author}</a> 创建")
+            if corpid.blank? || corpsecret.blank? || @group_client.blank?
+              return
+            end
+            
+            if @group_client.is_valid?
+            
+              #options = {access_token: "access_token"}
+              # redis_key 也可定制
+              #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
+              #issue
+              #填写确认并应用的应用AgentId
+              @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,"您关注的任务 <a href=\'http://proj.tecsoon.cn/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.author}</a> 创建")
+            end
           end
         end
       end

@@ -11,13 +11,13 @@ module CorpWechatsJournalsPatch
     if user.id == 2
       return
     end
-    @journal = @issue.journals.last
-    if notify? && (Setting.plugin_redmine_app_notifications.include?('issue_updated') ||
-        (Setting.plugin_redmine_app_notifications.include?('issue_note_added') && journal.notes.present?) ||
-        (Setting.plugin_redmine_app_notifications.include?('issue_status_updated') && journal.new_status.present?) ||
-        (Setting.plugin_redmine_app_notifications.include?('issue_assigned_to_updated') && journal.detail_for_attribute('assigned_to_id').present?) ||
-        (Setting.plugin_redmine_app_notifications.include?('issue_priority_updated') && journal.new_value_for('priority_id').present?)
-      )
+    issue = journalized.reload
+    to_users = notified_users
+    cc_users = notified_watchers - to_users
+    issue = journalized
+    @issue = issue
+    
+    if notify?
       # 需要接受微信信息的用户微信ID集合
       send_people = ""
 
@@ -43,21 +43,31 @@ module CorpWechatsJournalsPatch
       end
       
       @corp_wechat = CorpWechat.first
+      if @corp_wechat.blank?
+        return
+      end
+      
       #填写确认并应用的企业ID
       corpid = @corp_wechat.corp_id
       #填写确认并应用的应用Secret
       corpsecret = @corp_wechat.corp_secret
       @group_client = QyWechatApi::Client.new(corpid, corpsecret)
       # 为了确保用户输入的corpid, corpsecret是准确的，请务必执行：
-      @group_client.is_valid?
       
-      #options = {access_token: "access_token"}
-      # redis_key 也可定制
-      #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
-      #issue
-      #填写确认并应用的应用AgentId
-      @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,
-      "您关注的任务 <a href=\'http://proj.tecsoon.cn/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> 更新 ")
+      if corpid.blank? || corpsecret.blank? || @group_client.blank?
+        return
+      end
+      
+      if @group_client.is_valid?
+      
+        #options = {access_token: "access_token"}
+        # redis_key 也可定制
+        #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
+        #issue
+        #填写确认并应用的应用AgentId
+        @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,
+        "您关注的任务 <a href=\'http://proj.tecsoon.cn/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> 更新 ")
+      end
     end
   end
 end
