@@ -70,7 +70,8 @@ module RedmineQyWechat
               #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
               #issue
               #填写确认并应用的应用AgentId
-              @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,"您关注的任务 <a href=\'http://proj.tecsoon.cn/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.author}</a> 创建")
+
+              @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,"您关注的任务 <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.author}</a> 创建")
             end
           end
         end
