@@ -12,9 +12,9 @@ Redmine::Plugin.register :redmine_work_wechat do
   settings :default => {
   }, :partial => 'settings/corp_wechat'
                       
-  Redmine::Search.map do |search|
-    search.register :corp_wechats
-  end
+  # Redmine::Search.map do |search|
+  #   search.register :corp_wechats
+  # end
 end
 ActionDispatch::Callbacks.to_prepare do
   require 'redmine_qy_wechat'
