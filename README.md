@@ -3,16 +3,18 @@
 
 This is a plugin for Wechat of work which is the biggest IM in China. Wechat of work is only oriented to medium-sized and small enterprises in China. So we just introduce it in Chinese.
 
-该插件是企业微信的消息推送插件，企业微信的官方地址是work.weixin.qq.com，不是微信或微信企业公众号。
+该插件是企业微信的消息推送插件，企业微信的官方地址是work.weixin.qq.com，不是微信或微信企业公众号（目前了解到，微信企业号也能够支持）。
 该插件实现企业微信的某个企业群体的remdine消息推送，适用于已经使用企业微信做沟通和管理的企业。
 
 ### 企业微信消息插件安装指南 ###
 
 1、下载源码压缩包，展开到redmine的plugins目录下，保证有redmine_work_wechat目录。
 
-2、安装必要的gem类库，如果是生产环境，则建议带-without参数：
+2、安装必要的gem类库，如果是生产环境，则建议带--without参数：
 
-bundle install –without development test
+bundle install –-without development test
+
+注：如果是大陆内的网络，最好把redmine根目录下的Gemfile第一行的source 'https://rubygems.org'，改为source 'http://gems.china-ruby.org'
 
 3、执行数据迁移：
 
@@ -52,3 +54,4 @@ https://work.weixin.qq.com
 ### 贡献人员 ###
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。
+ 感谢「微笑、晴天，确认了也能够支持微信企业号，并指出文档说明问题。
