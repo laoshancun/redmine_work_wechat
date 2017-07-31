@@ -44,3 +44,10 @@ zh:
   msg_by: 已被
   msg_created: 创建
   msg_updated: 更新
+  
+  settings_wechat: 企业微信设置
+  settings_corp_name: 企业名称
+  settings_corp_id: 企业ID
+  settings_app_name: 应用名称
+  settings_app_id: 应用ID
+  settings_app_secret: 应用Secret

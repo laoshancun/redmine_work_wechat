@@ -46,20 +46,20 @@ module RedmineQyWechat
               end
             end
 
-            @corp_wechat = CorpWechat.first
+            #填写确认并应用的企业ID
+            corpid = Setting["plugin_redmine_work_wechat"][:wechat_corp_id]
+            #填写确认并应用的应用Secret
+            corpsecret = Setting["plugin_redmine_work_wechat"][:wechat_app_secret]
             
-            if @corp_wechat.blank?
+            app_id = Setting["plugin_redmine_work_wechat"][:wechat_app_id]
+            
+            if corpid.blank? || corpsecret.blank? || app_id.blank?
               return
             end
-            
-            #填写确认并应用的企业ID
-            corpid = @corp_wechat.corp_id
-            #填写确认并应用的应用Secret
-            corpsecret = @corp_wechat.corp_secret
             @group_client = QyWechatApi::Client.new(corpid, corpsecret)
             # 为了确保用户输入的corpid, corpsecret是准确的，请务必执行：
             
-            if corpid.blank? || corpsecret.blank? || @group_client.blank?
+            if @group_client.blank?
               return
             end
             
@@ -72,7 +72,7 @@ module RedmineQyWechat
                 #issue
                 #填写确认并应用的应用AgentId
   
-                @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,"#{l(:msg_focus)} <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.author}</a> #{l(:msg_created)}")              
+                @group_client.message.send_text(send_people, "", "", app_id,"#{l(:msg_focus)} <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.author}</a> #{l(:msg_created)}")              
               end
             rescue
               return
