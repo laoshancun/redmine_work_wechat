@@ -1,6 +1,8 @@
 # English strings go here for Rails i18n
 zh:
   # my_label: "My label"
+  label_corp_wechat: 企业微信
+
   menu_qy_wechats: 企业微信
   label_send_message: 发送消息
   label_match_user: 匹配用户
@@ -37,3 +39,8 @@ zh:
   user_qy_wechat_account_number: 企业微信账号
   
   field_operation: 操作
+  
+  msg_focus: 您关注的任务
+  msg_by: 已被
+  msg_created: 创建
+  msg_updated: 更新

@@ -58,17 +58,20 @@ module CorpWechatsJournalsPatch
         return
       end
       
-      if @group_client.is_valid?
-      
+      # 改成异常捕捉，避免is_valid?方法本身的出错
+      begin
+        if @group_client.is_valid?
         #options = {access_token: "access_token"}
         # redis_key 也可定制
         #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
         #issue
         #填写确认并应用的应用AgentId
-        
-        
+  
         @group_client.message.send_text(send_people, "", "", @corp_wechat.app_id,
-        "您关注的任务 <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> 已被 <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> 更新 ")
+        "#{l(:msg_focus)} <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> #{l(:msg_updated)}")
+      end
+      rescue
+        return
       end
     end
   end
