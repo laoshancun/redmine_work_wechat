@@ -43,4 +43,11 @@ en:
   msg_focus: The task you tracked
   msg_by: by
   msg_created: created
-  msg_created: updated
+  msg_updated: updated
+  
+  settings_wechat: corp_wechat setting
+  settings_corp_name: corp name
+  settings_corp_id: corp id
+  settings_app_name: app name
+  settings_app_id: app id
+  settings_app_secret: app secret
