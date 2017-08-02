@@ -6,6 +6,7 @@ module RedmineQyWechat
           unloadable # Send unloadable so it will not be unloaded in development
           
           safe_attributes 'corp_wechat_account_number'
+          safe_attributes 'dingtalk_account_number'
           
         end
       end

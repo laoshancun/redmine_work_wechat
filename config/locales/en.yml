@@ -2,6 +2,7 @@
 en:
   # my_label: "My label"
   label_corp_wechat: Corp_wechat
+  label_dingtalk: DingTalk
 
   menu_qy_wechats: work wechat
   label_send_message: send message
@@ -37,6 +38,7 @@ en:
   permission_destroy_qy_wechat: delete work wechat app
   
   user_qy_wechat_account_number: work wechat account
+  user_dingtalk_account_number: dingtalk account
   
   field_operation: operation
   
@@ -51,3 +53,8 @@ en:
   settings_app_name: app name
   settings_app_id: app id
   settings_app_secret: app secret
+  
+  settings_dingtalk: dingtalk setting
+  settings_dt_corp_id: corp id
+  settings_dt_app_id: app id
+  settings_dt_corp_secret: corp secret

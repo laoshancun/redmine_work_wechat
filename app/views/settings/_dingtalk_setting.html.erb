@@ -1,0 +1,12 @@
+  <p>
+    <label><%= l(:settings_dt_corp_id) %></label>
+    <%= text_field_tag 'settings[dingtalk_corp_id]', @settings[:dingtalk_corp_id], :size => 50 %>
+  </p>
+  <p>
+    <label><%= l(:settings_dt_app_id) %></label>
+    <%= text_field_tag 'settings[dingtalk_app_id]', @settings[:dingtalk_app_id], :size => 50 %>
+  </p>
+  <p>
+    <label><%= l(:settings_dt_corp_secret) %></label>
+    <%= text_field_tag 'settings[dingtalk_corp_secret]', @settings[:dingtalk_corp_secret], :size => 60 %>
+  </p>

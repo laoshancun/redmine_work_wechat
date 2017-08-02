@@ -1,48 +1,16 @@
 module CorpWechatsJournalsPatch
   extend ActiveSupport::Concern
   # 当创建journal时发送消息
+  require 'net/http'
+  require 'net/https'
+
   included do
     after_create :send_messages_after_create_journal
   end
-
-  def send_messages_after_create_journal
-    # firstly ignore the anonymouse to avoid notification bug
-    # 拷贝app_notifications_journals_patch.rb
-    if user.id == 2
-      return
-    end
-    issue = journalized.reload
-    to_users = notified_users
-    cc_users = notified_watchers - to_users
-    issue = journalized
-    @issue = issue
-    
-    if notify?
-      # 需要接受微信信息的用户微信ID集合
-      send_people = ""
-
-      # 作者
-      unless @issue.author_id.nil?
-        unless User.where(:id => @issue.author_id).first.corp_wechat_account_number.blank?
-          send_people.concat(User.where(:id => @issue.author_id).first.corp_wechat_account_number).concat("|")
-        end
-      end
-      
-      # 指派者
-      unless @issue.assigned_to_id.nil?
-        unless User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number.blank?
-          send_people.concat(User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number).concat("|")
-        end
-      end
-
-      # 关注者
-      @issue.watcher_users.each do |information|
-        unless User.where(:id => information.id).first.corp_wechat_account_number.blank?
-          send_people.concat(User.where(:id => information.id).first.corp_wechat_account_number).concat("|")
-        end
-      end
-      
-      #填写确认并应用的企业ID
+  
+  # 用企业微信发送 
+  def send_by_wechat(send_people_wx)
+       #填写确认并应用的企业ID
       corpid = Setting["plugin_redmine_work_wechat"][:wechat_corp_id]
       #填写确认并应用的应用Secret
       corpsecret = Setting["plugin_redmine_work_wechat"][:wechat_app_secret]
@@ -69,11 +37,134 @@ module CorpWechatsJournalsPatch
         #issue
         #填写确认并应用的应用AgentId
   
-        @group_client.message.send_text(send_people, "", "", app_id,
-        "#{l(:msg_focus)} <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> #{l(:msg_updated)}")
-      end
+          @group_client.message.send_text(send_people_wx, "", "", app_id,
+          "#{l(:msg_focus)} <a href=\'" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.journals.last.user}</a> #{l(:msg_updated)}")
+        end
       rescue
-        return
+      end
+  end
+      
+  # 用钉钉发送 
+  def send_by_dingtalk(send_people_dd)
+    #填写确认并应用的企业ID
+    corpid = Setting["plugin_redmine_work_wechat"][:dingtalk_corp_id]
+    #填写确认并应用的应用Secret
+    corpsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_corp_secret]
+      
+    appid = Setting["plugin_redmine_work_wechat"][:dingtalk_app_id]
+            
+    if corpid.blank? || corpsecret.blank? || appid.blank?
+      return
+    end
+    uri = URI.parse("https://oapi.dingtalk.com/gettoken?corpid=#{corpid}&corpsecret=#{corpsecret}")
+    # 改成异常捕捉，避免is_valid?方法本身的出错
+    begin
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri.request_uri)  
+            
+      response = http.request(request)
+          
+      # 获得token
+      token = JSON.parse(response.body)["access_token"]
+    
+      issue_url =  "http://" + Setting.host_name + "/issues/#{@issue.id}"
+      issue_title = "##{@issue.id}: #{@issue.subject}"
+      issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.journals.last.user} #{l(:msg_updated)}"
+    
+      data = {
+        "touser": send_people_dd,
+        "toparty":"",
+        "agentid": "#{appid}",
+        "msgtype": "link",
+        "link": {
+          "messageUrl": "http://s.dingtalk.com/market/dingtalk/error_code.php",
+          "picUrl": "",
+          "title": issue_title,
+          "text": issue_text
+        }
+      }.to_json
+        
+        
+      url = URI.parse("https://oapi.dingtalk.com/message/send?access_token=#{token}")  
+      http = Net::HTTP.new(url.host,url.port)
+      http.use_ssl = true
+      
+      #req = Net::HTTP::Post.new(url.path, initheader = {'Content-Type' =>'application/json'})
+      req = Net::HTTP::Post.new(url.request_uri, 'Content-Type' => 'application/json')
+          
+      req.body = data
+      res = http.request(req)
+    rescue
+    end
+  end
+
+  def send_messages_after_create_journal
+    # firstly ignore the anonymouse to avoid notification bug
+    # 拷贝app_notifications_journals_patch.rb
+    if user.id == 2
+      return
+    end
+    issue = journalized.reload
+    to_users = notified_users
+    cc_users = notified_watchers - to_users
+    issue = journalized
+    @issue = issue
+    
+    if notify?
+      # 需要接受微信和钉钉的用户ID集合
+      send_people_wx = ""
+      send_people_dd = ""
+
+      # 作者
+      unless @issue.author_id.nil?
+        unless User.where(:id => @issue.author_id).first.corp_wechat_account_number.blank?
+          send_people_wx.concat(User.where(:id => @issue.author_id).first.corp_wechat_account_number).concat("|")
+        end
+      end
+      
+      # 指派者
+      unless @issue.assigned_to_id.nil?
+        unless User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number.blank?
+          send_people_wx.concat(User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number).concat("|")
+        end
+      end
+
+      # 关注者
+      @issue.watcher_users.each do |information|
+        unless User.where(:id => information.id).first.corp_wechat_account_number.blank?
+          send_people_wx.concat(User.where(:id => information.id).first.corp_wechat_account_number).concat("|")
+        end
+      end
+      
+      if !send_people_wx.blank?
+        send_by_wechat send_people_wx
+      end
+      
+      # 以下是钉钉的处理
+      # 作者
+      unless @issue.author_id.nil?
+        unless User.where(:id => @issue.author_id).first.dingtalk_account_number.blank?
+          send_people_dd.concat(User.where(:id => @issue.author_id).first.dingtalk_account_number).concat("|")
+        end
+      end
+      
+      # 指派者
+      unless @issue.assigned_to_id.nil?
+        unless User.where(:id => @issue.assigned_to_id).first.dingtalk_account_number.blank?
+          send_people_dd.concat(User.where(:id => @issue.assigned_to_id).first.dingtalk_account_number).concat("|")
+        end
+      end
+
+      # 关注者
+      @issue.watcher_users.each do |information|
+        unless User.where(:id => information.id).first.dingtalk_account_number.blank?
+          send_people_dd.concat(User.where(:id => information.id).first.dingtalk_account_number).concat("|")
+        end
+      end
+      
+      if !send_people_dd.blank?
+        send_by_dingtalk send_people_dd
       end
     end
   end
