@@ -2,7 +2,7 @@ Redmine::Plugin.register :redmine_work_wechat do
   name 'Redmine Work Wechat plugin'
   author 'tecsoon team'
   description 'This is a plugin of Work Wechat for Redmine'
-  version '0.0.1'
+  version '0.0.9'
   url 'https://bitbucket.org/39648421/redmine_work_wechat'
   author_url 'https://bitbucket.org/39648421'
   
