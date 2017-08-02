@@ -63,3 +63,4 @@ https://work.weixin.qq.com
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。
  感谢「微笑、晴天，确认了也能够支持微信企业号，并指出文档说明问题。
+ 感谢Isaac Liu在技术上的大力支持，也感谢中国最大的Redmine qq讨论群（138524445）。
