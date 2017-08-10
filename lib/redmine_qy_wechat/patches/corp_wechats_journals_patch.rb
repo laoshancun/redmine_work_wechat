@@ -3,7 +3,7 @@ module CorpWechatsJournalsPatch
   # 当创建journal时发送消息
   require 'net/http'
   require 'net/https'
-
+  
   included do
     after_create :send_messages_after_create_journal
   end
@@ -68,8 +68,9 @@ module CorpWechatsJournalsPatch
       # 获得token
       token = JSON.parse(response.body)["access_token"]
     
-      issue_url =  "http://" + Setting.host_name + "/issues/#{@issue.id}"
-      issue_title = "##{@issue.id}: #{@issue.subject}"
+      issue_url =  Setting.protocol + "://" + Setting.host_name + "/issues/#{@issue.id}"
+      issue_title = @issue.project.name
+      
       issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.journals.last.user} #{l(:msg_updated)}"
     
       data = {
@@ -78,7 +79,7 @@ module CorpWechatsJournalsPatch
         "agentid": "#{appid}",
         "msgtype": "link",
         "link": {
-          "messageUrl": "http://s.dingtalk.com/market/dingtalk/error_code.php",
+          "messageUrl": issue_url,
           "picUrl": "",
           "title": issue_title,
           "text": issue_text

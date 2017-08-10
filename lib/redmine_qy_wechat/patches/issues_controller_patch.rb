@@ -76,8 +76,10 @@ module RedmineQyWechat
           # 获得token
           token = JSON.parse(response.body)["access_token"]
         
-          issue_url =  "http://" + Setting.host_name + "/issues/#{@issue.id}"
-          issue_title = "##{@issue.id}: #{@issue.subject}"
+          # issue_url = issue_url(@issue)
+          issue_url =  Setting.protocol + "://" + Setting.host_name + "/issues/#{@issue.id}"
+          issue_title = @issue.project.name
+          
           issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.author} #{l(:msg_created)}"
         
           data = {
@@ -86,7 +88,7 @@ module RedmineQyWechat
             "agentid": "#{appid}",
             "msgtype": "link",
             "link": {
-              "messageUrl": "http://s.dingtalk.com/market/dingtalk/error_code.php",
+              "messageUrl": issue_url,
               "picUrl": "",
               "title": issue_title,
               "text": issue_text
