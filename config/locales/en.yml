@@ -3,6 +3,7 @@ en:
   # my_label: "My label"
   label_corp_wechat: Corp_wechat
   label_dingtalk: DingTalk
+  label_dingtalk_login: DingTalk Login
 
   menu_qy_wechats: work wechat
   label_send_message: send message
@@ -58,3 +59,7 @@ en:
   settings_dt_corp_id: corp id(CorpId)
   settings_dt_app_id: app id(AgentID)
   settings_dt_corp_secret: corp secret(CorpSecret)
+  
+  settings_dingtalk_login: dingtalk login setting
+  settings_dt_login_appid: dingtalk login appid(appid)
+  settings_dt_login_appsecret: dingtalk login appsecret(appsecret)
