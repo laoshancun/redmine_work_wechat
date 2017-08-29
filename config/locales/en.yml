@@ -5,7 +5,7 @@ en:
   label_dingtalk: DingTalk
   label_dingtalk_login: DingTalk Login
 
-  menu_qy_wechats: work wechat
+  menu_qy_wechats: work wechat and dingtalk
   label_send_message: send message
   label_match_user: match user
   label_edit_match_user: edit match user
