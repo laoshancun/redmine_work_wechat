@@ -26,6 +26,8 @@ module RedmineQyWechat
               return
             end
             
+            begin
+            
             uri = URI.parse("https://oapi.dingtalk.com/sns/gettoken?appid=#{appid}&appsecret=#{appsecret}")
           
             http = Net::HTTP.new(uri.host, uri.port)
@@ -85,6 +87,8 @@ module RedmineQyWechat
             # 获得用户id
             $dingid = JSON.parse(response.body)["user_info"]["dingId"]
             
+            rescue
+            end
             
             user = User.find_by dingtalk_dingid: $dingid
             if !user.blank?
