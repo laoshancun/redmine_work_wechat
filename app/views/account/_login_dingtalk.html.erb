@@ -1,0 +1,35 @@
+<!--控制代码，判断是否需要加载扫码-->
+<% appid = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appid] %>
+<% appsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appsecret] %>
+<% if appid.blank? || appsecret.blank? %>
+  <% return %>
+<% end %>
+
+<!--加入钉钉扫码js-->
+<script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
+
+<div id="login_container" style="text-align:center;"></div>
+
+<script>
+    var obj = DDLogin({
+     id:"login_container",//这里需要你在自己的页面定义一个HTML标签并设置id，例如<div id="login_container"></div>或<span id="login_container"></span>
+     goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoafohs6dg51isgrdtk%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dDingTalkSTATE%26redirect_uri%3dhttps%3a%2f%2ftigergm-rm-plugins-a39648421.c9users.io/login",
+     style: "border:none;background-color:#FFFFFF;",
+     width : "365",
+     height: "400"
+    });
+    
+    var hanndleMessage = function (event) {
+        var loginTmpCode = event.data; //拿到loginTmpCode后就可以在这里构造跳转链接进行跳转了
+        var origin = event.origin;
+        
+        window.location.href='https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoafohs6dg51isgrdtk&response_type=code&scope=snsapi_login&state=DingTalkSTATE&redirect_uri=https://tigergm-rm-plugins-a39648421.c9users.io/login&loginTmpCode=' + loginTmpCode;
+        
+    };
+    if (typeof window.addEventListener != 'undefined') {
+        window.addEventListener('message', hanndleMessage, false);
+    } else if (typeof window.attachEvent != 'undefined') {
+        window.attachEvent('onmessage', hanndleMessage);
+    }
+
+</script>
