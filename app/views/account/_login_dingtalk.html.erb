@@ -1,7 +1,8 @@
 <!--控制代码，判断是否需要加载扫码-->
 <% appid = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appid] %>
 <% appsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appsecret] %>
-<% if appid.blank? || appsecret.blank? %>
+<% redirect_url = Setting["plugin_redmine_work_wechat"][:dingtalk_login_redirect] %>
+<% if appid.blank? || appsecret.blank? || redirect_url.blank? %>
   <% return %>
 <% end %>
 
@@ -13,7 +14,7 @@
 <script>
     var obj = DDLogin({
      id:"login_container",//这里需要你在自己的页面定义一个HTML标签并设置id，例如<div id="login_container"></div>或<span id="login_container"></span>
-     goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoafohs6dg51isgrdtk%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dDingTalkSTATE%26redirect_uri%3dhttps%3a%2f%2ftigergm-rm-plugins-a39648421.c9users.io/login",
+     goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3f<%= appid %>%3ddingoafohs6dg51isgrdtk%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dDingTalkSTATE%26redirect_uri%3dhttps%3a%2f%2ftigergm-rm-plugins-a39648421.c9users.io/login",
      style: "border:none;background-color:#FFFFFF;",
      width : "365",
      height: "400"
