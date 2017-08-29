@@ -7,6 +7,7 @@ module RedmineQyWechat
           
           safe_attributes 'corp_wechat_account_number'
           safe_attributes 'dingtalk_account_number'
+          safe_attributes 'dingtalk_dingid'
           
         end
       end
