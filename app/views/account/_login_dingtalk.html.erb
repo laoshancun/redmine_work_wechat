@@ -1,0 +1,39 @@
+<!--控制代码，判断是否需要加载扫码-->
+<% appid = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appid] %>
+<% appsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appsecret] %>
+<% redirect_url = Setting["plugin_redmine_work_wechat"][:dingtalk_login_redirect] %>
+<% if appid.blank? || appsecret.blank? || redirect_url.blank? %>
+  <% return %>
+<% end %>
+
+<!--加入钉钉扫码js-->
+<script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
+
+<div id="login_container" style="text-align:center;"></div>
+
+<% goto_url = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=#{appid}&response_type=code&scope=snsapi_login&state=DingTalkSTATE&redirect_uri=#{redirect_url}" %>
+<% goto_url_encode = ERB::Util.url_encode(goto_url) %>
+
+<script>
+    var obj = DDLogin({
+     id:"login_container",//这里需要你在自己的页面定义一个HTML标签并设置id，例如<div id="login_container"></div>或<span id="login_container"></span>
+     goto: "<%= goto_url_encode %>",
+     style: "border:none;background-color:#FFFFFF;",
+     width : "365",
+     height: "400"
+    });
+    
+    var hanndleMessage = function (event) {
+        var loginTmpCode = event.data; //拿到loginTmpCode后就可以在这里构造跳转链接进行跳转了
+        var origin = event.origin;
+        
+        window.location.href='https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=<%= appid %>&response_type=code&scope=snsapi_login&state=DingTalkSTATE&redirect_uri=<%= redirect_url %>&loginTmpCode=' + loginTmpCode;
+        
+    };
+    if (typeof window.addEventListener != 'undefined') {
+        window.addEventListener('message', hanndleMessage, false);
+    } else if (typeof window.attachEvent != 'undefined') {
+        window.attachEvent('onmessage', hanndleMessage);
+    }
+
+</script>

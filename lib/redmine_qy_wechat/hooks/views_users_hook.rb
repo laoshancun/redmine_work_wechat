@@ -43,6 +43,16 @@ module RedmineQyWechat
                   s << text_field_tag( 'user[dingtalk_account_number]',nil)
               end
               s << "</p>"
+              
+              s << "<p>"
+              s << label_tag( "user_dingtalk_dingid", l(:user_dingtalk_dingid))
+              if user && user.dingtalk_dingid
+                  s << text_field_tag( 'user[dingtalk_dingid]',user.dingtalk_dingid)
+              else
+                  
+                  s << text_field_tag( 'user[dingtalk_dingid]',nil)
+              end
+              s << "</p>"
               return s.html_safe
             end
             

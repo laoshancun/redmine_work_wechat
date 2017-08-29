@@ -3,8 +3,9 @@ en:
   # my_label: "My label"
   label_corp_wechat: Corp_wechat
   label_dingtalk: DingTalk
+  label_dingtalk_login: DingTalk Login
 
-  menu_qy_wechats: work wechat
+  menu_qy_wechats: work wechat and dingtalk
   label_send_message: send message
   label_match_user: match user
   label_edit_match_user: edit match user
@@ -39,6 +40,7 @@ en:
   
   user_qy_wechat_account_number: work wechat account
   user_dingtalk_account_number: dingtalk account
+  user_dingtalk_dingid: dintalk dingid
   
   field_operation: operation
   
@@ -55,6 +57,11 @@ en:
   settings_app_secret: app secret
   
   settings_dingtalk: dingtalk setting
-  settings_dt_corp_id: corp id
-  settings_dt_app_id: app id
-  settings_dt_corp_secret: corp secret
+  settings_dt_corp_id: corp id(CorpId)
+  settings_dt_app_id: app id(AgentID)
+  settings_dt_corp_secret: corp secret(CorpSecret)
+  
+  settings_dingtalk_login: dingtalk login setting
+  settings_dt_login_appid: dingtalk login appid(appid)
+  settings_dt_login_appsecret: dingtalk login appsecret(appsecret)
+  settings_dt_login_redirect: dingtalk login redirect(redirect url)
