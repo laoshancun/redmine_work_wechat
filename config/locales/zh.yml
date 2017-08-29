@@ -56,6 +56,6 @@ zh:
   
   
   settings_dingtalk: 钉钉设置
-  settings_dt_corp_id: 企业ID
-  settings_dt_app_id: 应用ID
-  settings_dt_corp_secret: 企业Secret
+  settings_dt_corp_id: 企业ID（CorpId）
+  settings_dt_app_id: 应用ID（AgentID）
+  settings_dt_corp_secret: 企业Secret（CorpSecret）

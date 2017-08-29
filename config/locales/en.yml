@@ -55,6 +55,6 @@ en:
   settings_app_secret: app secret
   
   settings_dingtalk: dingtalk setting
-  settings_dt_corp_id: corp id
-  settings_dt_app_id: app id
-  settings_dt_corp_secret: corp secret
+  settings_dt_corp_id: corp id(CorpId)
+  settings_dt_app_id: app id(AgentID)
+  settings_dt_corp_secret: corp secret(CorpSecret)
