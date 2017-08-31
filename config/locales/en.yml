@@ -56,7 +56,7 @@ en:
   settings_app_id: app id
   settings_app_secret: app secret
   
-  settings_dingtalk: dingtalk setting
+  settings_dingtalk: dingtalk message pushing
   settings_dt_corp_id: corp id(CorpId)
   settings_dt_app_id: app id(AgentID)
   settings_dt_corp_secret: corp secret(CorpSecret)
