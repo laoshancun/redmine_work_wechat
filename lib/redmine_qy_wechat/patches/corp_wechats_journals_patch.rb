@@ -11,11 +11,11 @@ module CorpWechatsJournalsPatch
   # 用企业微信发送 
   def send_by_wechat(send_people_wx)
        #填写确认并应用的企业ID
-      corpid = Setting["plugin_redmine_work_wechat"][:wechat_corp_id]
+      corpid = Setting["plugin_redmine_work_wechat"]["wechat_corp_id"]
       #填写确认并应用的应用Secret
-      corpsecret = Setting["plugin_redmine_work_wechat"][:wechat_app_secret]
+      corpsecret = Setting["plugin_redmine_work_wechat"]["wechat_app_secret"]
       
-      app_id = Setting["plugin_redmine_work_wechat"][:wechat_app_id]
+      app_id = Setting["plugin_redmine_work_wechat"]["wechat_app_id"]
             
       if corpid.blank? || corpsecret.blank? || app_id.blank?
         return
@@ -47,11 +47,11 @@ module CorpWechatsJournalsPatch
   # 用钉钉发送 
   def send_by_dingtalk(send_people_dd)
     #填写确认并应用的企业ID
-    corpid = Setting["plugin_redmine_work_wechat"][:dingtalk_corp_id]
+    corpid = Setting["plugin_redmine_work_wechat"]["dingtalk_corp_id"]
     #填写确认并应用的应用Secret
-    corpsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_corp_secret]
+    corpsecret = Setting["plugin_redmine_work_wechat"]["dingtalk_corp_secret"]
       
-    appid = Setting["plugin_redmine_work_wechat"][:dingtalk_app_id]
+    appid = Setting["plugin_redmine_work_wechat"]["dingtalk_app_id"]
             
     if corpid.blank? || corpsecret.blank? || appid.blank?
       return

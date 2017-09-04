@@ -17,9 +17,9 @@ module RedmineQyWechat
           state = params[:state]
           # 如果是钉钉登录回调
           if state == "DingTalkSTATE"
-            appid = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appid]
-            appsecret = Setting["plugin_redmine_work_wechat"][:dingtalk_login_appsecret]
-            redirect_url = Setting["plugin_redmine_work_wechat"][:dingtalk_login_redirect]
+            appid = Setting["plugin_redmine_work_wechat"]["dingtalk_login_appid"]
+            appsecret = Setting["plugin_redmine_work_wechat"]["dingtalk_login_appsecret"]
+            redirect_url = Setting["plugin_redmine_work_wechat"]["dingtalk_login_redirect"]
             
             if (appid.blank? || appsecret.blank? || redirect_url.blank?)
               return
