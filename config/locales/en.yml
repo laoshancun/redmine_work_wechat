@@ -39,7 +39,7 @@ en:
   permission_destroy_qy_wechat: delete work wechat app
   
   user_qy_wechat_account_number: work wechat account
-  user_dingtalk_account_number: dingtalk account
+  user_dingtalk_account_number: dingtalk job number
   user_dingtalk_dingid: dintalk dingid
   
   field_operation: operation

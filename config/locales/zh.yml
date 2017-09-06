@@ -39,7 +39,7 @@ zh:
   permission_destroy_qy_wechat: 删除企业微信应用
   
   user_qy_wechat_account_number: 企业微信账号
-  user_dingtalk_account_number: 钉钉账号
+  user_dingtalk_account_number: 钉钉工号
   user_dingtalk_dingid: 钉钉唯一ID
   
   field_operation: 操作

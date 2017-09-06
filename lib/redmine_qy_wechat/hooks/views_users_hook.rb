@@ -34,15 +34,12 @@ module RedmineQyWechat
               end
               s << "</p>"
               
-              s << "<p>"
-              s << label_tag( "user_dingtalk_account_number", l(:user_dingtalk_account_number))
-              if user && user.dingtalk_account_number
+              if user && User.current.admin?
+                  s << "<p>"
+                  s << label_tag( "user_dingtalk_account_number", l(:user_dingtalk_account_number))
                   s << text_field_tag( 'user[dingtalk_account_number]',user.dingtalk_account_number)
-              else
-                  
-                  s << text_field_tag( 'user[dingtalk_account_number]',nil)
+                  s << "</p>"
               end
-              s << "</p>"
               
               s << "<p>"
               s << label_tag( "user_dingtalk_dingid", l(:user_dingtalk_dingid))
