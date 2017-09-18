@@ -4,6 +4,7 @@
 <% appsecret = Setting["plugin_redmine_work_wechat"]["dingtalk_login_appsecret"] %>
 <% redirect_url = Setting["plugin_redmine_work_wechat"]["dingtalk_login_redirect"] %>
 <% rescue %>
+  <% return %>
 <% end %>
 <% if appid.blank? || appsecret.blank? || redirect_url.blank? %>
   <% return %>

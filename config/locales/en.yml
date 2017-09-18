@@ -60,8 +60,30 @@ en:
   settings_dt_corp_id: corp id(CorpId)
   settings_dt_app_id: app id(AgentID)
   settings_dt_corp_secret: corp secret(CorpSecret)
+  settings_dt_approval_dept_id: approval dept id
+  settings_dt_approval_flow_no: approval flow no
+  settings_dt_approval_flow_enable: approval enabled
   
   settings_dingtalk_login: dingtalk login setting
   settings_dt_login_appid: dingtalk login appid(appid)
   settings_dt_login_appsecret: dingtalk login appsecret(appsecret)
   settings_dt_login_redirect: dingtalk login redirect(redirect url)
+  
+  label_dingtalk_flow_start: start dingtalk flow
+  flash_dingtalk_setting_lack: setting lack
+  flash_dingtalk_flow_wrong: Dingtalk called with wrong
+  flash_dingtalk_flow_start: dingtalk flow started
+  label_err_code: err code
+  label_err_message: err message
+  label_err_code: err_sub_code. err sub code
+  label_err_message: err_sub_message. err sub message
+  lable_err_unknown: error unknown. maybe network, service calling or settings invoking errors
+  lable_err_setting_null: dingtalk seeting lack. need to fill all these setting information in the plugin's setting page of dingtalk
+  lable_err_author_null: original's dingtalk id missed. please modify the accurate dingtalk id in the account
+  lable_err_assign_null: asign or their dingtalk id missed. please modify the accurate dingtalk id in the account
+  
+  # 英文也需要配置为中文
+  flow_issue_id: Issue号
+  flow_issue_name: 标题
+  flow_issue_desc: 内容
+  flow_project_name: 项目

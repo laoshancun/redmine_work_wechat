@@ -61,8 +61,31 @@ zh:
   settings_dt_corp_id: 企业ID（CorpId）
   settings_dt_app_id: 应用ID（AgentID）
   settings_dt_corp_secret: 企业Secret（CorpSecret）
+  settings_dt_approval_dept_id: 审批部门ID
+  settings_dt_approval_flow_no: 审批流程码
+  settings_dt_approval_flow_enable: 启用审批
   
   settings_dingtalk_login: 钉钉扫码登录
   settings_dt_login_appid: 钉钉登录应用ID（appid）
   settings_dt_login_appsecret: 钉钉登录应用Secret（appsecret）
   settings_dt_login_redirect: 钉钉登录应用回调地址（redirect url）
+  
+  label_dingtalk_flow_start: 发起钉钉审批
+  flash_dingtalk_setting_lack: 配置信息不全
+  flash_dingtalk_flow_wrong: 钉钉流程调用异常
+  flash_dingtalk_flow_start: 已经发起钉钉流程
+  
+  label_success_tip: 请在钉钉app中查看发起的流程
+  label_err_code: 错误码：
+  label_err_message: 错误信息：
+  label_err_code: 错误子码：
+  label_err_message: 错误详细信息：
+  lable_err_unknown: 未知的过程错误：可能是网络、服务调用接口、传递的配置信息不正确等造成
+  lable_err_setting_null: 钉钉的配置信息不全，需要在插件配置的钉钉信息推送栏目，填写全部所有的配置
+  lable_err_author_null: 发起人缺乏钉钉工号，请在账户里维护准确的钉钉工号
+  lable_err_assign_null: 指派人未指定或其钉钉工号为空，请指派并确保其有钉钉工号
+  
+  flow_issue_id: Issue号
+  flow_issue_name: 标题
+  flow_issue_desc: 内容
+  flow_project_name: 项目
