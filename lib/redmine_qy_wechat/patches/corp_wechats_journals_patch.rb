@@ -71,7 +71,7 @@ module CorpWechatsJournalsPatch
       issue_url =  Setting.protocol + "://" + Setting.host_name + "/issues/#{@issue.id}"
       issue_title = @issue.project.name
       
-      issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.journals.last.user} #{l(:msg_updated)}"
+      issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.journals.last.user} #{l(:msg_updated)}(##{@issue.journals.size})"
     
       data = {
         "touser": send_people_dd,
