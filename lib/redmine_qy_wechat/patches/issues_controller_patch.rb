@@ -116,10 +116,16 @@ module RedmineQyWechat
             # 需要接受微信和钉钉的用户ID集合
             send_people_wx = ""
             send_people_dd = ""
+            
+            
+            to_users = @issue.notified_users
+            cc_users = @issue.notified_watchers - to_users
+            notify_users = to_users + cc_users
+
       
             # 用@issue自带的方法获取需要通知的用户列表
             
-            @issue.notified_users.each do |user|
+            notify_users.each do |user|
               unless user.corp_wechat_account_number.blank?
                 send_people_wx.concat(user.corp_wechat_account_number).concat("|")
               end
