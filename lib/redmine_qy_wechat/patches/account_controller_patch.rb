@@ -96,6 +96,10 @@ module RedmineQyWechat
               else
                 handle_inactive_user(user)
               end
+            else
+              if !$dingid.blank?
+                flash[:notice] = l(:flash_dingtalk_bind)
+              end
             end
             return
           end

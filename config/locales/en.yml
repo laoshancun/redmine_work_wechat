@@ -73,6 +73,9 @@ en:
   flash_dingtalk_setting_lack: setting lack
   flash_dingtalk_flow_wrong: Dingtalk called with wrong
   flash_dingtalk_flow_start: dingtalk flow started
+  
+  flash_dingtalk_bind: your dingtalk account hasn't been bound. please login with redmine account then it will be auto-bound
+  
   label_err_code: err code
   label_err_message: err message
   label_err_code: err_sub_code. err sub code

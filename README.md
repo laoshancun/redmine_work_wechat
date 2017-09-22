@@ -1,8 +1,9 @@
 # README #
 ### 简介 ###
 
-This is a plugin for Wechat of work which is the biggest IM in China. Wechat of work is only oriented to medium-sized and small enterprises in China. So we just introduce it in Chinese.
-Later I have added the feature of Dingtalk which is the earliest mobile app for work and is a competitor toward Work Wechat.
+This is a plugin for Wechat of work and Dingtalk which both are the biggest IM of work in China. Wechat of work is only oriented to medium-sized and small enterprises in China. Dingtalk only belongs to the cool Chinese companies. So we just introduce them in Chinese.
+
+Both are competing against each other in China but they all benefit the Chinese mobile work field. I combined their APIs into one plugin for redmine.
 
 该插件是企业微信的消息推送插件，企业微信的官方地址是work.weixin.qq.com，不是微信或微信企业公众号（目前了解到，微信企业号也能够支持）。
 该插件实现企业微信的某个企业群体的remdine消息推送，适用于已经使用企业微信做沟通和管理的企业。

@@ -75,6 +75,8 @@ zh:
   flash_dingtalk_flow_wrong: 钉钉流程调用异常
   flash_dingtalk_flow_start: 已经发起钉钉流程
   
+  flash_dingtalk_bind: 您的钉钉账号还未绑定扫码，请用redmine账户正常登陆，将自动绑定
+  
   label_success_tip: 请在钉钉app中查看发起的流程
   label_err_code: 错误码：
   label_err_message: 错误信息：
