@@ -22,6 +22,8 @@ Both are competing against each other in China but they all benefit the Chinese 
 注意同时利用消息推送的appid等信息即可。每个issue会有启动钉钉审批流程的连接，如果配置信息都正确，会在钉钉中发起审批，作者就是发起人，指派人未审批者，跟踪者为抄送者。
 以上功能暂时先简单实现，后期看情况优化，比如增加查看dingtalk的审批状态，按照项目配置不同的审批部门或是否启用审批流程等。功能很不完善，请有一定开发基础的试用，其他人慎用。也不要想能够发起请假等标准流程（因为dingtalk的api受限）。
 
+注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。
+
 ### 企业微信消息插件安装指南 ###
 
 1、下载源码压缩包，展开到redmine的plugins目录下，保证有redmine_work_wechat目录。
