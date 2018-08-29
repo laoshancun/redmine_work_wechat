@@ -12,9 +12,31 @@
 
 <!--加入钉钉扫码js-->
 <script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
-
+<script src="//g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
 <div id="login_container" style="text-align:center;"></div>
-
+<% corpid = Setting["plugin_redmine_work_wechat"]["dingtalk_corp_id"] %>
+<% unless corpid.blank? %>
+<script>
+    dd.ready(function() {
+    	dd.runtime.permission.requestAuthCode({
+  		corpId: "<%= corpid  %>",
+	    onSuccess: function(result) {
+	    /*{
+	        code: 'hYLK98jkf0m' //string authCode
+	    }*/
+      var authLoginUrl = '<%= signin_url %>?auth_code=' + result.code + '&redirect_uri=' + '<%= redirect_url %>';
+      <% unless params[:back_url].blank? %>
+        authLoginUrl = '<%= request.url %>&auth_code=' + result.code + '&redirect_uri=' + '<%= redirect_url %>';
+      <% end %>
+      window.location.href=authLoginUrl 
+	    },
+	    onFail : function(err) {
+        dd.alert({content: JSON.stringify(err)});
+	    }
+  	});
+	});
+</script>
+<% end %>
 <% goto_url = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=#{appid}&response_type=code&scope=snsapi_login&state=DingTalkSTATE&redirect_uri=#{redirect_url}" %>
 <% goto_url_encode = ERB::Util.url_encode(goto_url) %>
 

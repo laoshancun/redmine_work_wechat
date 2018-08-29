@@ -75,6 +75,7 @@ en:
   flash_dingtalk_flow_start: dingtalk flow started
   
   flash_dingtalk_bind: your dingtalk account hasn't been bound. please login with redmine account then it will be auto-bound
+  flash_dingtalk_autologin_error: your pin account failed to log in successfully. please contact the administrator to check the configuration
   
   label_err_code: err code
   label_err_message: err message
