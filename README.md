@@ -25,7 +25,7 @@ Both are competing against each other in China but they all benefit the Chinese 
 自0.2.0版，加入钉钉APP内的免登功能，如果从钉钉APP内的消息或者工作台中进入redmine，可以无需输入用户名和密码，凭借钉钉用户授权就可以直接登录。前提是启用扫码登录功能，这个便捷功能才能生效。
 
 =======
-注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。
+注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。该问题也应该在0.2.2版本后修复。
 
 ### 企业微信消息插件安装指南 ###
 
