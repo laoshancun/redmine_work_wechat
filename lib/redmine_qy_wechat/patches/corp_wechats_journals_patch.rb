@@ -74,15 +74,15 @@ module CorpWechatsJournalsPatch
       issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.journals.last.user} #{l(:msg_updated)}(##{@issue.journals.size})"
     
       data = {
-        "touser": send_people_dd,
-        "toparty":"",
-        "agentid": "#{appid}",
-        "msgtype": "link",
-        "link": {
-          "messageUrl": issue_url,
-          "picUrl": "",
-          "title": issue_title,
-          "text": issue_text
+        touser: send_people_dd,
+        toparty: "",
+        agentid: "#{appid}",
+        msgtype: "link",
+        link: {
+          messageUrl: issue_url,
+          picUrl: "",
+          title: issue_title,
+          text: issue_text
         }
       }.to_json
         

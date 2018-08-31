@@ -83,15 +83,15 @@ module RedmineQyWechat
           issue_text = "#{@issue.tracker} ##{@issue.id}: #{@issue.subject} #{l(:msg_by)} #{@issue.author} #{l(:msg_created)}"
         
           data = {
-            "touser": send_people_dd,
-            "toparty":"",
-            "agentid": "#{appid}",
-            "msgtype": "link",
-            "link": {
-              "messageUrl": issue_url,
-              "picUrl": "",
-              "title": issue_title,
-              "text": issue_text
+            touser: send_people_dd,
+            toparty: "",
+            agentid: "#{appid}",
+            msgtype: "link",
+            link: {
+              messageUrl: issue_url,
+              picUrl: "",
+              title: issue_title,
+              text: issue_text
             }
           }.to_json
             

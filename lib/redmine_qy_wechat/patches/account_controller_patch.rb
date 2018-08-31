@@ -45,7 +45,7 @@ module RedmineQyWechat
               http.use_ssl = true
           
               data = {
-                "tmp_auth_code":  "#{code}"
+                tmp_auth_code:  "#{code}"
               }.to_json
             
               request_dd = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
@@ -65,8 +65,8 @@ module RedmineQyWechat
               http.use_ssl = true
           
               data = {
-                "openid": "#{openid}",
-                "persistent_code": "#{persistent_code}"
+                openid: "#{openid}",
+                persistent_code: "#{persistent_code}"
               }.to_json
           
               request_dd = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
