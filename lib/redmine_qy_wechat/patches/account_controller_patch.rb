@@ -91,15 +91,15 @@ module RedmineQyWechat
               rescue
               end
             
-              user = User.find_by dingtalk_dingid: $dingid
-              if !user.blank?
+              user = User.find_by dingtalk_dingid: $dingid unless $dingid.blank?
+              unless user.blank?
                 if user.active?
                   successful_authentication(user)
                 else
                   handle_inactive_user(user)
                 end
               else
-                if !$dingid.blank?
+                unless $dingid.blank?
                   flash[:notice] = l(:flash_dingtalk_bind)
                 end
               end
@@ -146,7 +146,7 @@ module RedmineQyWechat
               redirect_to home_url
               return
             end
-            user = User.find_by dingtalk_account_number: dingtalk_user_id
+            user = User.find_by dingtalk_account_number: dingtalk_user_id unless dingtalk_user_id.blank?
             unless user.blank?
               if user.active?
                 successful_authentication(user)
