@@ -28,7 +28,8 @@ module RedmineQyWechat
               end
             
               begin
-            
+              $dingid = nil # 置空
+          
               uri = URI.parse("https://oapi.dingtalk.com/sns/gettoken?appid=#{appid}&appsecret=#{appsecret}")
           
               http = Net::HTTP.new(uri.host, uri.port)
@@ -89,9 +90,12 @@ module RedmineQyWechat
               $dingid = JSON.parse(response.body)["user_info"]["dingId"]
             
               rescue
+                flash[:notice] = l(:flash_dingtalk_bind)
+                return
               end
             
               user = User.find_by dingtalk_dingid: $dingid unless $dingid.blank?
+              
               unless user.blank?
                 if user.active?
                   successful_authentication(user)
@@ -166,7 +170,8 @@ module RedmineQyWechat
       def successful_authentication_with_login_dingtalk(user)
         if !$dingid.blank?
           # 更新当前的dingid
-          user.update_attributes(:dingtalk_dingid=>$dingid) 
+          user.update_attributes(:dingtalk_dingid=>$dingid)
+          $dingid = nil # 置空
         end
         successful_authentication_without_login_dingtalk user
       end
