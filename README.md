@@ -27,6 +27,16 @@ Both are competing against each other in China but they all benefit the Chinese 
 =======
 注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。该问题应该在0.2.2版本后修复。
 
+另外钉钉方面有些注意事项，配置时要注意：
+1、信息推送只在插件配置里设定前三个字段就好了；
+
+2、信息推送复用了redmine的邮件推送选项和账户邮件通知设置（不需要配置邮件），所以注意不要禁用邮件推送的选项和账户中的邮件推送设置，比如必要勾选作者创建的任务邮件推送之类的；
+
+3、目前钉钉是通过员工号来做信息推送和免登的，注意统一维护redmine里的工号字段；
+
+4、通过钉钉唯一id做扫描登录。
+
+
 ### 企业微信消息插件安装指南 ###
 
 1、下载源码压缩包，展开到redmine的plugins目录下，保证有redmine_work_wechat目录。
