@@ -24,6 +24,8 @@ Both are competing against each other in China but they all benefit the Chinese 
 
 自0.2.0版，加入钉钉APP内的免登功能，如果从钉钉APP内的消息或者工作台中进入redmine，可以无需输入用户名和密码，凭借钉钉用户授权就可以直接登录。前提是启用扫码登录功能，这个便捷功能才能生效。
 
+自0.2.5版，屏蔽有关钉钉审批的实验性代码，关闭相关的配置选项，以减少该插件的复杂度，避免造成误解。
+
 =======
 注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。该问题应该在0.2.2版本后修复。
 
@@ -95,4 +97,5 @@ https://work.weixin.qq.com
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。
  感谢「微笑、晴天，确认了也能够支持微信企业号，并指出文档说明问题。
+ 感谢沧海云帆，推进免登功能的开发和测试。
  感谢Isaac Liu在技术上的大力支持，也感谢中国最大的Redmine qq讨论群（138524445）。

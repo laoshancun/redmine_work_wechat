@@ -1,7 +1,7 @@
 class DingtalkController < ApplicationController
   def start_dingtalk_flow
-    flow_flag = Setting["plugin_redmine_work_wechat"]["dingtalk_approval_flow_enabled"]
-    
+    # flow_flag = Setting["plugin_redmine_work_wechat"]["dingtalk_approval_flow_enabled"]
+    flow_flag = "0" 
     #填写确认并应用的企业ID
     corpid = Setting["plugin_redmine_work_wechat"]["dingtalk_corp_id"]
     #填写确认并应用的应用Secret

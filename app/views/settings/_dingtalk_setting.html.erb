@@ -10,16 +10,3 @@
     <label><%= l(:settings_dt_corp_secret) %></label>
     <%= text_field_tag 'settings[dingtalk_corp_secret]', @settings["dingtalk_corp_secret"], :size => 60 %>
   </p>
-  <p>
-    <label><%= l(:settings_dt_approval_dept_id) %></label>
-    <%= text_field_tag 'settings[dingtalk_approval_dept_id]', @settings["dingtalk_approval_dept_id"], :size => 60 %>
-  </p>
-  <p>
-    <label><%= l(:settings_dt_approval_flow_no) %></label>
-    <%= text_field_tag 'settings[dingtalk_approval_flow_no]', @settings["dingtalk_approval_flow_no"], :size => 60 %>
-  </p>
-  <p>
-    <label><%= l(:settings_dt_approval_flow_enable) %></label>
-    <%= hidden_field_tag 'settings[dingtalk_approval_flow_enabled]', 0, :id => nil %>
-    <%= check_box_tag 'settings[dingtalk_approval_flow_enabled]', 1, @settings["dingtalk_approval_flow_enabled"].to_i > 0 %>
-  </p>
