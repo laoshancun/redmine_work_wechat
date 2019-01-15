@@ -1,4 +1,4 @@
-class CreateCorpWechats < ActiveRecord::Migration
+class CreateCorpWechats < Rails.version < '5.1' ? ActiveRecord::Migration : ActiveRecord::Migration[4.2]
   def change
     create_table :corp_wechats do |t|
       t.string :corp_id

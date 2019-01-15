@@ -6,7 +6,9 @@ module RedmineQyWechat
         base.class_eval do
           unloadable
           #alias_method_chain :build_new_issue_from_params, :qy_wechat
-          alias_method_chain :create, :corp_wechat
+          # 兼容4.0
+          alias_method :create_without_corp_wechat, :create
+          alias_method :create, :create_with_corp_wechat
         end
      end
      

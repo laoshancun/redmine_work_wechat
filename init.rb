@@ -16,6 +16,6 @@ Redmine::Plugin.register :redmine_work_wechat do
   #   search.register :corp_wechats
   # end
 end
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
   require 'redmine_qy_wechat'
 end

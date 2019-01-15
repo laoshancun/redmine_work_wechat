@@ -6,8 +6,11 @@ module RedmineQyWechat
         base.class_eval do
           unloadable # Send unloadable so it will not be unloaded in development
           # defind a globle var for backurl
-          alias_method_chain :login, :login_dingtalk
-          alias_method_chain :successful_authentication, :login_dingtalk
+          # 适配4.0 
+          alias_method :login_with_login_dingtalk, :login
+          alias_method :login, :login_with_login_dingtalk
+          alias_method :successful_authentication_without_login_dingtalk, :successful_authentication
+          alias_method :successful_authentication, :successful_authentication_with_login_dingtalk
         end
       end
     
