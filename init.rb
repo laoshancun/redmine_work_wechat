@@ -3,8 +3,8 @@ Redmine::Plugin.register :redmine_work_wechat do
   author 'Tigergm and Tecsoon team'
   description 'This is a plugin of Work Wechat and Dingtalk for Redmine'
   version '0.2.8'
-  url 'https://bitbucket.org/39648421/redmine_work_wechat'
-  author_url 'https://bitbucket.org/39648421'
+  url 'https://gitee.com/tigergm/redmine_work_wechat.git'
+  author_url 'https://gitee.com/tigergm'
   
   permission :corp_wechats, { :corp_wechats => [:new] }, :public => true
   menu :admin_menu, :corp_wechats, {:controller => 'settings', :action => 'plugin', :id => "redmine_work_wechat"},:caption => :menu_qy_wechats
