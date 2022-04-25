@@ -112,6 +112,8 @@ bundle exec rake redmine:plugins:migrate NAME=redmine_work_wechat RAILS_ENV=prod
 
 以上经过4.2.4版本的bitnami-redmine-4.2.4-0-windows-x64-installer.exe在win10下验证过。
 
+其他版本的windows下安装，解决思路和方法应该一致。
+
 ### 贡献人员 ###
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。
