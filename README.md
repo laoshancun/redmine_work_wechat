@@ -95,6 +95,23 @@ https://work.weixin.qq.com
 5）另外，注意在系统管理员的管理->配置中，注意维护正确的主机地址，这样才能保证推送的信息链接没问题。
 
 
+### 企业微信消息插件安装指南 ###
+如果环境是bitnami一键式安装并且是windows环境，经过验证需要这样处理：
+
+1）源码的windows目录下，有支持libcurl的动态库，这个是推送消息的底层支持组件，是必须具备的，把此文件放到bitnami的ruby/bin目录下，从而能够在执行插件数据迁移时通过。
+
+2）执行命令bundle install和rake redmine:plugins:migrate NAME=redmine_work_wechat RAILS_ENV=production时，需要提前把bitnami下的ruby/bin目录加入到windows的Path系统路径中，这样才能保证这些命令正常执行。
+
+3）在执行rake redmine:plugins:migrate NAME=redmine_work_wechat RAILS_ENV=production时，会提示rake版本问题，此时，只要加入bundle exec即可，完整命令如下：
+
+bundle exec rake redmine:plugins:migrate NAME=redmine_work_wechat RAILS_ENV=production
+
+4）如果没有在ruby/bin里放置libcurl.dll动态链文件，执行3）步骤会提示缺少此类类库的问题，如果已放置了，则能正常执行。
+
+5）执行完成之后，需要重启bitnami的全部服务，等待一会儿，进入redmine才能看到插件功能生效，配置方法不变。
+
+以上经过4.2.4版本的bitnami-redmine-4.2.4-0-windows-x64-installer.exe在win10下验证过。
+
 ### 贡献人员 ###
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。
