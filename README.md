@@ -114,6 +114,9 @@ bundle exec rake redmine:plugins:migrate NAME=redmine_work_wechat RAILS_ENV=prod
 
 其他版本的windows下安装，解决思路和方法应该一致。
 
+### 重要事项 ###
+20220426，0.3.0是初步适配redmine 5的版本，不一定适用于redmine 4和redmine 3，还未做充分验证；另外，适配redmine 5的插件版本可能有一些未知的缺陷，后续逐渐发现和修复，慢慢升级优化。
+
 ### 贡献人员 ###
 
  主要由深圳德讯开发团队开发并完成，感谢GracieYu，MiseryT，Daxiang等。

@@ -113,8 +113,8 @@ module RedmineQyWechat
        
       def create_with_corp_wechat
           create_without_corp_wechat
-          if @issue.save
-            
+          # redmine 5 需要屏蔽调用@issue.save，否则会报错
+          # if @issue.save
             # 需要接受微信和钉钉的用户ID集合
             send_people_wx = ""
             send_people_dd = ""
@@ -135,61 +135,17 @@ module RedmineQyWechat
                 send_people_dd.concat(user.dingtalk_account_number).concat("|")
               end
             end
-      
-            # # 作者
-            # unless @issue.author_id.nil?
-            #   unless User.where(:id => @issue.author_id).first.corp_wechat_account_number.blank?
-            #     send_people_wx.concat(User.where(:id => @issue.author_id).first.corp_wechat_account_number).concat("|")
-            #   end
-            # end
             
-            
-            # # 指派者
-            # unless @issue.assigned_to_id.nil?
-            #   unless User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number.blank?
-            #     send_people_wx.concat(User.where(:id => @issue.assigned_to_id).first.corp_wechat_account_number).concat("|")
-            #   end
-            # end
-      
-            # # 关注者
-            # @issue.watcher_users.each do |information|
-            #   unless User.where(:id => information.id).first.corp_wechat_account_number.blank?
-            #     send_people_wx.concat(User.where(:id => information.id).first.corp_wechat_account_number).concat("|")
-            #   end
-            # end
-            
+            # 推微信
             if !send_people_wx.blank?
               send_by_wechat send_people_wx
             end
-            
-            # # 以下是钉钉的处理
-            # # 作者
-            # unless @issue.author_id.nil?
-            #   unless User.where(:id => @issue.author_id).first.dingtalk_account_number.blank?
-            #     send_people_dd.concat(User.where(:id => @issue.author_id).first.dingtalk_account_number).concat("|")
-            #   end
-            # end
-            
-            # # 指派者
-            # unless @issue.assigned_to_id.nil?
-            #   unless User.where(:id => @issue.assigned_to_id).first.dingtalk_account_number.blank?
-            #     send_people_dd.concat(User.where(:id => @issue.assigned_to_id).first.dingtalk_account_number).concat("|")
-            #   end
-            # end
-      
-            # # 关注者
-            # @issue.watcher_users.each do |information|
-            #   unless User.where(:id => information.id).first.dingtalk_account_number.blank?
-            #     send_people_dd.concat(User.where(:id => information.id).first.dingtalk_account_number).concat("|")
-            #   end
-            # end
 
+            # 推钉钉
             if !send_people_dd.blank?
               send_by_dingtalk send_people_dd
             end
-            
-            
-          end
+          # end
         end
       end
     end
