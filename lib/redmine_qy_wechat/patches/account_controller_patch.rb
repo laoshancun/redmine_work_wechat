@@ -7,14 +7,94 @@ module RedmineQyWechat
           unloadable # Send unloadable so it will not be unloaded in development
           # defind a globle var for backurl
           # 适配4.0 
-          alias_method :login_with_login_dingtalk, :login
-          alias_method :login, :login_with_login_dingtalk
+          alias_method :login_without_qrcode, :login
+          alias_method :login, :login_with_qrcode
           alias_method :successful_authentication_without_login_dingtalk, :successful_authentication
           alias_method :successful_authentication, :successful_authentication_with_login_dingtalk
         end
       end
     
       module InstanceMethods
+
+        def login_with_qrcode
+          login_type = params[:login_type]
+
+          case login_type
+          when "1"
+            login_with_login_wechat
+          when "2"
+            login_with_login_dingtalk
+          else
+            forbbid_password_login=Setting["plugin_redmine_work_wechat"]["forbbid_password_login"]
+            unless forbbid_password_login != "0"
+              login_without_qrcode  
+            else
+              flash[:error] = l(:flash_password_login_forbbid) if request.method() == "POST"
+            end
+          end 
+        end
+
+        def login_with_login_wechat
+          code = params[:code]
+          state = params[:state]
+          # 如果是企业微信登录回调
+          if state == "CORPWECHATSTATE"
+            corpid = Setting["plugin_redmine_work_wechat"]["wechat_login_corpid"]
+            appsecret = Setting["plugin_redmine_work_wechat"]["wechat_login_appsecret"]
+          
+            if (corpid.blank? || appsecret.blank?)
+              return
+            end
+          
+            begin
+            $userid = nil # 置空
+            # 获取access token
+            uri = URI.parse("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=#{corpid}&corpsecret=#{appsecret}")
+        
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true
+            request_dd = Net::HTTP::Get.new(uri.request_uri)  
+        
+            response = http.request(request_dd)
+            
+            # 获取访问用户身份
+            token = JSON.parse(response.body)["access_token"]
+        
+            uri = URI.parse("https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=#{token}&code=#{code}")
+            http = Net::HTTP.new(uri.host,uri.port)
+            http.use_ssl = true
+        
+          
+            request_dd = Net::HTTP::Get.new(uri.request_uri)
+        
+            response = http.request(request_dd)
+        
+            # 获得userid
+            $userid = JSON.parse(response.body)["UserId"]
+
+            rescue
+              flash[:notice] = l(:flash_wechat_bind)
+              return
+            end
+          
+            user = User.find_by corp_wechat_account_number: $userid unless $userid.blank?
+            
+            unless user.blank?
+              if user.active?
+                successful_authentication(user)
+              else
+                handle_inactive_user(user)
+              end
+            else
+              unless $userid.blank?
+                flash[:notice] = l(:flash_wechat_bind)
+              end
+            end
+            return
+          end
+        end
+
+
         def login_with_login_dingtalk
           auth_code = params[:auth_code]
           if auth_code.blank?
@@ -166,7 +246,6 @@ module RedmineQyWechat
             end
             return
           end
-          login_without_login_dingtalk
         end
       end
       

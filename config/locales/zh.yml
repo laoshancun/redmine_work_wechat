@@ -49,6 +49,15 @@ zh:
   msg_created: 创建
   msg_updated: 更新
   
+  settings_login: 登录设置
+  settings_login_off: 关闭
+  settings_login_wechat: 企业微信
+  settings_login_dingtalk: 钉钉
+
+  settings_forbbid_password_login:  密码登录(默认启用)
+  settings_password_login_off:  禁止密码登录
+  settings_password_login_on:  启用密码登录
+
   settings_wechat: 企业微信消息推送
   settings_corp_name: 企业名称
   settings_corp_id: 企业ID
@@ -56,7 +65,12 @@ zh:
   settings_app_id: 应用ID
   settings_app_secret: 应用Secret
   
-  
+  settings_wechat_login: 企业微信扫码登录
+  settings_cw_login_corpid: 企业ID
+  settings_cw_login_appid: 应用ID
+  settings_cw_login_appsecret: 应用密钥
+  settings_cw_login_redirect: 回调地址
+
   settings_dingtalk: 钉钉消息推送
   settings_dt_corp_id: 企业ID（CorpId）
   settings_dt_app_id: 应用ID（AgentID）
@@ -76,8 +90,10 @@ zh:
   flash_dingtalk_flow_start: 已经发起钉钉流程
   
   flash_dingtalk_bind: 您的钉钉账号还未绑定扫码，请尽快用redmine账户正常登陆，将自动绑定（等待时间长可能造成绑定失效）
+  flash_wechat_bind: 您的企业微信账号还未绑定扫码，请尽快用redmine账户正常登陆，将自动绑定（等待时间长可能造成绑定失效）
   flash_dingtalk_autologin_error: 您的钉钉账号未能自动登录成功，请联系管理员检查相关配置
-  
+  flash_password_login_forbbid: 密码登录已禁用，请联系管理员
+
   label_success_tip: 请在钉钉app中查看发起的流程
   label_err_code: 错误码：
   label_err_message: 错误信息：

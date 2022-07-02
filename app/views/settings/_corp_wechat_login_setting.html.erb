@@ -1,0 +1,13 @@
+  <p>
+    <label><%= l(:settings_cw_login_corpid) %></label>
+    <%= text_field_tag 'settings[wechat_login_corpid]', @settings["wechat_login_corpid"], :size => 60 %>
+  </p>
+
+  <p>
+    <label><%= l(:settings_cw_login_appid) %></label>
+    <%= text_field_tag 'settings[wechat_login_appid]', @settings["wechat_login_appid"], :size => 60 %>
+  </p>
+  <p>
+    <label><%= l(:settings_cw_login_appsecret) %></label>
+    <%= text_field_tag 'settings[wechat_login_appsecret]', @settings["wechat_login_appsecret"], :size => 60 %>
+  </p>

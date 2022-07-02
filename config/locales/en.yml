@@ -49,12 +49,27 @@ en:
   msg_created: created
   msg_updated: updated
   
+  settings_login: login type
+  settings_login_off: turn off
+  settings_login_wechat: wechat
+  settings_login_dingtalk: dingtalk
+
+  settings_forbbid_password_login:  password login(default allow)
+  settings_password_login_off:  forbbid password login
+  settings_password_login_on:  allow password login
+
   settings_wechat: corp_wechat message pusing
   settings_corp_name: corp name
   settings_corp_id: corp id
   settings_app_name: app name
   settings_app_id: app id
   settings_app_secret: app secret
+
+  settings_wechat_login: corp_wechat login setting
+  settings_cw_login_corpid: corp id
+  settings_cw_login_appid: corp app id
+  settings_cw_login_appsecret: app secret
+  settings_cw_login_redirect: login redirect(redirect url)
   
   settings_dingtalk: dingtalk message pushing
   settings_dt_corp_id: corp id(CorpId)
@@ -75,14 +90,16 @@ en:
   flash_dingtalk_flow_start: dingtalk flow started
   
   flash_dingtalk_bind: your dingtalk account hasn't been bound. please login with redmine account then it will be auto-bound
+  flash_wechat_bind: your corp wechat account hasn't been bound. please login with redmine account then it will be auto-bound
   flash_dingtalk_autologin_error: your pin account failed to log in successfully. please contact the administrator to check the configuration
-  
+  flash_password_login_forbbid: password login is disabled,please contact the administrator for help
+
   label_err_code: err code
   label_err_message: err message
   label_err_code: err_sub_code. err sub code
   label_err_message: err_sub_message. err sub message
   lable_err_unknown: error unknown. maybe network, service calling or settings invoking errors
-  lable_err_setting_null: dingtalk seeting lack. need to fill all these setting information in the plugin's setting page of dingtalk
+  lable_err_setting_null: dingtalk setting lack. need to fill all these setting information in the plugin's setting page of dingtalk
   lable_err_author_null: original's dingtalk id missed. please modify the accurate dingtalk id in the account
   lable_err_assign_null: asign or their dingtalk id missed. please modify the accurate dingtalk id in the account
   
