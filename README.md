@@ -29,6 +29,7 @@ Both are competing against each other in China but they all benefit the Chinese 
 自0.2.5版，屏蔽有关钉钉审批的实验性代码，关闭相关的配置选项，以减少该插件的复杂度，避免造成误解。
 
 自0.3.1版，新增企业微信扫码登录。
+
 =======
 注意：当前插件不支持Windows系统下的服务，比如BitName一键安装或者自行在Windows下配置的Rails环境等。该问题应该在0.2.2版本后修复。
 
