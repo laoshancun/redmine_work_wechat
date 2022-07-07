@@ -54,7 +54,8 @@ en:
   settings_login_wechat: wechat
   settings_login_dingtalk: dingtalk
 
-  settings_forbbid_password_login:  password login(default allow)
+  settings_login_password_forbbid:  password login(default allow)
+  settings_login_password_psk:  preshared key for password login
   settings_password_login_off:  forbbid password login
   settings_password_login_on:  allow password login
 

@@ -54,7 +54,8 @@ zh:
   settings_login_wechat: 企业微信
   settings_login_dingtalk: 钉钉
 
-  settings_forbbid_password_login:  密码登录(默认启用)
+  settings_login_password_forbbid:  密码登录(默认启用)
+  settings_login_password_psk: 登录预共享密钥
   settings_password_login_off:  禁止密码登录
   settings_password_login_on:  启用密码登录
 

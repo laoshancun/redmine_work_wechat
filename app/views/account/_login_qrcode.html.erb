@@ -11,12 +11,13 @@
 <% end %>
 
 <% unless params[:back_url].blank? %>
-<% base_url = request.url %>
+<% base_url = "#{request.url}&login_type=#{type}" %>
 <% else %>
-<% base_url = signin_url %>
+<% base_url = "#{signin_url}?login_type=#{type}" %>
 <% end %>
 
-<% redirect_uri = ERB::Util.url_encode("#{base_url}?login_type=#{type}") %>
+
+<% redirect_uri = ERB::Util.url_encode(base_url) %>
 
 <!--控制代码,判断是否需要加载扫码-->
 
@@ -27,15 +28,21 @@
 <script src="https://wwcdn.weixin.qq.com/node/wework/wwopen/js/wwLogin-1.2.7.js"></script>
 <div id="login_container" style="text-align:center;"></div>
 <script>
-  var wwLogin = new WwLogin({
-    "id": "login_container",  
-    "appid": "<%= corpid %>",
-    "agentid": "<%= agentid %>",
-    "redirect_uri": "<%= redirect_uri %>",
-    "state": "CORPWECHATSTATE",
-    "href": "",
-    "lang": "zh",
-  });
+  if (~navigator.userAgent.indexOf("wxwork")) {
+    location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%= corpid %>&redirect_uri=<%= redirect_uri %>&response_type=code&scope=snsapi_base&state=CORPWECHATSTATE&agentid=<%= agentid %>#wechat_redirect";
+  }else{
+    var wwLogin = new WwLogin({
+      "id": "login_container",  
+      "appid": "<%= corpid %>",
+      "agentid": "<%= agentid %>",
+      "redirect_uri": "<%= redirect_uri %>",
+      "state": "CORPWECHATSTATE",
+      "href": "",
+      "lang": "zh",
+    });
+  }
+ // https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect
+  
 </script>
 <% end %>
 

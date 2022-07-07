@@ -25,13 +25,15 @@ module RedmineQyWechat
           when "2"
             login_with_login_dingtalk
           else
-            forbbid_password_login=Setting["plugin_redmine_work_wechat"]["forbbid_password_login"]
-            unless forbbid_password_login != "0"
+            password_login_forbbid = Setting["plugin_redmine_work_wechat"]["login_password_forbbid"] != "0"
+            is_same_psk = Setting["plugin_redmine_work_wechat"]["login_password_psk"] == params[:psk]
+            # allow password login with psk when password login forbbiden.
+            unless password_login_forbbid
               login_without_qrcode  
             else
-              flash[:error] = l(:flash_password_login_forbbid) if request.method() == "POST"
+              flash[:error] = l(:flash_password_login_forbbid) if request.method() == "POST" && !is_same_psk
             end
-          end 
+          end
         end
 
         def login_with_login_wechat

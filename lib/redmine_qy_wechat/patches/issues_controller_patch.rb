@@ -48,7 +48,7 @@ module RedmineQyWechat
             #group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
             #issue
             #填写确认并应用的应用AgentId
-            @group_client.message.send_text(send_people_wx, "", "", app_id,"#{l(:msg_focus)} <a href=\'" + Setting.protocol + "://" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>#{@issue.author}</a> #{l(:msg_created)}")
+            @group_client.message.send_text(send_people_wx, "", "", app_id,"#{l(:msg_focus)} <a href=\'" + Setting.protocol + "://" + Setting.host_name + "/issues/#{@issue.id}\'>#{@issue.tracker} ##{@issue.id}: #{@issue.subject}</a> #{l(:msg_by)} <a href=\'javascript:void(0);\'>@#{@issue.author}</a> #{l(:msg_created)}")
           end
         rescue
         end  

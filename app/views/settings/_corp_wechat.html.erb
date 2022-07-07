@@ -5,9 +5,9 @@
 
 
 <p>
-  <label><%= l(:settings_forbbid_password_login) %></label>
-  <%= select_tag 'settings[forbbid_password_login]',options_for_select({ l(:settings_password_login_on) => '0',
-  l(:settings_password_login_off) => '1' }, @settings["forbbid_password_login"]) %>
+  <label><%= l(:settings_login_password_forbbid) %></label>
+  <%= select_tag 'settings[login_password_forbbid]',options_for_select({ l(:settings_password_login_on) => '0',
+  l(:settings_password_login_off) => '1' }, @settings["login_password_forbbid"]) %>
 </p>  
 <p>
   <label><%= l(:settings_login) %></label>
@@ -15,7 +15,10 @@
   l(:settings_login_wechat) => '1',
   l(:settings_login_dingtalk) => '2' }, @settings["login_type"]) %>
 </p>
-
+<p>
+  <label><%= l(:settings_login_password_psk) %></label>
+  <%= text_field_tag 'settings[login_password_psk]', @settings["login_password_psk"], :size => 60 %>
+</p>
 <%= render_tabs corp_wechat_tabs %>
 
 <% html_title(l(:label_settings), l(:label_corp_wechat)) -%>  
