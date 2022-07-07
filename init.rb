@@ -1,6 +1,6 @@
 Redmine::Plugin.register :redmine_work_wechat do
   name 'Redmine Work Wechat & Dingtalk plugin'
-  author 'laoshancun'
+  author 'laoshancun and Tigergm and Tecsoon team'
   description 'This is a plugin of Work Wechat and Dingtalk for Redmine. fork from https://gitee.com/tigergm/redmine_work_wechat'
   version '0.3.1'
   url 'https://github.com/laoshancun/redmine_work_wechat'
